@@ -1,6 +1,7 @@
 # download google drive file with url and relevant file id 
 # Example: 
-# URL = https://drive.google.com/u/0/uc?id=1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG&export=download
+# URL type1 = https://drive.google.com/u/0/uc?id=1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG&export=download  # download link
+# URL type2 = https://drive.google.com/file/d/1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG/view?usp=sharing  # share link
 # file_id = 1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG
 #  
 # Source: https://stackoverflow.com/a/39225039
@@ -25,10 +26,6 @@ def download_file_from_google_drive(URL, id, destination):
                 if chunk:  # filter out keep-alive new chunks
                     f.write(chunk)
 
-    # URL = "https://docs.google.com/uc?export=download"
-    # id = '1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG'
-    # URL = "https://drive.google.com/u/0/uc?id=1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG&export=download"
-
     session = requests.Session()
 
     response = session.get(URL, params={'id': id}, stream=True)
@@ -45,8 +42,9 @@ def download_file_from_google_drive(URL, id, destination):
 if __name__ == "__main__":
     import sys
 
-    url     = "https://drive.google.com/u/0/uc?id=1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG&export=download"
-    file_id = "1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG"
+    # get file id and change url file_id
+    url     = "https://drive.google.com/u/0/uc?id=1AysroWpfISmm-yRFGBgFTrLy6FjQwvwP&export=download"
+    file_id = "1AysroWpfISmm-yRFGBgFTrLy6FjQwvwP"
     
     if len(sys.argv) is not 2:
         print("Usage: python download_from_gdrive.py destination_file_path")
